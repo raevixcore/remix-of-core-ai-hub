@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 99%;
+    --foreground: 240 10% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 10%;
+
+    --primary: 220 80% 56%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 240 10% 10%;
+
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 8% 46%;
+
+    --accent: 220 14% 93%;
+    --accent-foreground: 240 10% 10%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 220 80% 56%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 220 8% 46%;
+    --sidebar-primary: 220 80% 56%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 14% 93%;
+    --sidebar-accent-foreground: 240 10% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 220 80% 56%;
+
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+    --info: 199 89% 48%;
+    --info-foreground: 0 0% 100%;
+
+    --glow-primary: 220 80% 56%;
+    --surface-elevated: 0 0% 100%;
+    --surface-sunken: 220 14% 96%;
+  }
+
+  .dark {
+    --background: 228 12% 8%;
+    --foreground: 220 14% 96%;
+
+    --card: 228 12% 11%;
+    --card-foreground: 220 14% 96%;
+
+    --popover: 228 12% 11%;
+    --popover-foreground: 220 14% 96%;
+
+    --primary: 220 80% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 228 12% 15%;
+    --secondary-foreground: 220 14% 96%;
+
+    --muted: 228 12% 15%;
+    --muted-foreground: 220 8% 56%;
+
+    --accent: 228 12% 18%;
+    --accent-foreground: 220 14% 96%;
+
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 228 12% 17%;
+    --input: 228 12% 17%;
+    --ring: 220 80% 60%;
+
+    --sidebar-background: 228 12% 6%;
+    --sidebar-foreground: 220 8% 56%;
+    --sidebar-primary: 220 80% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 228 12% 14%;
+    --sidebar-accent-foreground: 220 14% 96%;
+    --sidebar-border: 228 12% 14%;
+    --sidebar-ring: 220 80% 60%;
+
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+    --info: 199 89% 48%;
+    --info-foreground: 0 0% 100%;
+
+    --glow-primary: 220 80% 60%;
+    --surface-elevated: 228 12% 13%;
+    --surface-sunken: 228 12% 6%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+}
+
+@layer utilities {
+  .glow-sm {
+    box-shadow: 0 0 15px -3px hsl(var(--glow-primary) / 0.15);
+  }
+  .glow-md {
+    box-shadow: 0 0 30px -5px hsl(var(--glow-primary) / 0.2);
+  }
+  .glass {
+    @apply bg-card/80 backdrop-blur-xl border border-border/50;
+  }
+  .surface-elevated {
+    background: hsl(var(--surface-elevated));
+  }
+  .surface-sunken {
+    background: hsl(var(--surface-sunken));
+  }
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* Smooth global transitions for theme changes */
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.3);
+}
+
+/* Card hover lift */
+.card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px -5px hsl(var(--glow-primary) / 0.1);
+}
