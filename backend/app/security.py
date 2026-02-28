@@ -14,7 +14,8 @@ def verify_password(plain: str, hashed: str) -> bool:
     return pwd_context.verify(plain, hashed)
 
 
-def hash_password(password: str) -> str:
+def hash_password(password: str):
+    password = password[:72]  # bcrypt limite
     return pwd_context.hash(password)
 
 
