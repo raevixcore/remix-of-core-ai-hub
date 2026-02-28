@@ -1,4 +1,4 @@
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000/api";
+const API_URL = "https://remix-of-core-ai-hub-3.onrender.com/api";
 
 export { API_URL };
 
@@ -42,10 +42,7 @@ async function refreshAccessToken(): Promise<string> {
   return data.access_token;
 }
 
-export async function apiFetch(
-  endpoint: string,
-  options: RequestInit = {}
-): Promise<any> {
+export async function apiFetch(endpoint: string, options: RequestInit = {}): Promise<any> {
   const token = getAccessToken();
 
   const headers: Record<string, string> = {
