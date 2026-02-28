@@ -48,19 +48,27 @@ const scheduledPosts = [
 
 const platformIcon = (platform: string) => {
   switch (platform) {
-    case "Instagram": return <Instagram className="h-3.5 w-3.5" />;
-    case "X": return <Twitter className="h-3.5 w-3.5" />;
-    case "Telegram": return <Send className="h-3.5 w-3.5" />;
-    case "WhatsApp": return <Phone className="h-3.5 w-3.5" />;
-    default: return null;
+    case "Instagram":
+      return <Instagram className="h-3.5 w-3.5" />;
+    case "X":
+      return <Twitter className="h-3.5 w-3.5" />;
+    case "Telegram":
+      return <Send className="h-3.5 w-3.5" />;
+    case "WhatsApp":
+      return <Phone className="h-3.5 w-3.5" />;
+    default:
+      return null;
   }
 };
 
 const priorityColor = (p: string) => {
   switch (p) {
-    case "high": return "bg-destructive/10 text-destructive border-destructive/20";
-    case "medium": return "bg-warning/10 text-warning border-warning/20";
-    default: return "bg-muted text-muted-foreground border-border";
+    case "high":
+      return "bg-destructive/10 text-destructive border-destructive/20";
+    case "medium":
+      return "bg-warning/10 text-warning border-warning/20";
+    default:
+      return "bg-muted text-muted-foreground border-border";
   }
 };
 
@@ -75,9 +83,7 @@ const Index = () => {
         className="mb-6"
       >
         <h1 className="text-xl font-semibold text-foreground">Dashboard</h1>
-        <p className="text-sm text-muted-foreground mt-0.5">
-          Welcome back. Here's your AI-powered overview.
-        </p>
+        <p className="text-sm text-muted-foreground mt-0.5">Welcome back. Here's your AI-powered overview.</p>
       </motion.div>
 
       {/* Onboarding Checklist */}
@@ -105,7 +111,10 @@ const Index = () => {
         <DashboardCard title="AI Activity" icon={<Brain className="h-4 w-4" />} delay={0.05}>
           <div className="space-y-2.5">
             {aiActivities.map((a, i) => (
-              <div key={i} className="flex items-start justify-between rounded-lg border border-border/50 bg-background/50 px-3 py-2.5">
+              <div
+                key={i}
+                className="flex items-start justify-between rounded-lg border border-border/50 bg-background/50 px-3 py-2.5"
+              >
                 <div className="flex-1 min-w-0">
                   <p className="text-xs font-medium text-foreground truncate">{a.action}</p>
                   <p className="text-[11px] text-muted-foreground mt-0.5">{a.time}</p>
@@ -120,7 +129,10 @@ const Index = () => {
         <DashboardCard title="Pending Approvals" icon={<ShieldCheck className="h-4 w-4" />} delay={0.1}>
           <div className="space-y-2.5">
             {pendingApprovals.map((a, i) => (
-              <div key={i} className="flex items-center justify-between rounded-lg border border-border/50 bg-background/50 px-3 py-2.5">
+              <div
+                key={i}
+                className="flex items-center justify-between rounded-lg border border-border/50 bg-background/50 px-3 py-2.5"
+              >
                 <div className="flex items-center gap-2 min-w-0 flex-1">
                   <span className="text-muted-foreground">{platformIcon(a.platform)}</span>
                   <p className="text-xs font-medium text-foreground truncate">{a.title}</p>
@@ -137,7 +149,10 @@ const Index = () => {
         <DashboardCard title="Conversations" icon={<MessageSquare className="h-4 w-4" />} delay={0.15}>
           <div className="space-y-2.5">
             {conversations.map((c, i) => (
-              <div key={i} className="flex items-center justify-between rounded-lg border border-border/50 bg-background/50 px-3 py-2.5">
+              <div
+                key={i}
+                className="flex items-center justify-between rounded-lg border border-border/50 bg-background/50 px-3 py-2.5"
+              >
                 <div className="flex items-center gap-2.5 min-w-0 flex-1">
                   <span className="text-muted-foreground">{platformIcon(c.platform)}</span>
                   <div className="min-w-0">
@@ -159,7 +174,10 @@ const Index = () => {
         <DashboardCard title="Upcoming Posts" icon={<CalendarClock className="h-4 w-4" />} delay={0.2}>
           <div className="space-y-2.5">
             {scheduledPosts.map((p, i) => (
-              <div key={i} className="flex items-center justify-between rounded-lg border border-border/50 bg-background/50 px-3 py-2.5">
+              <div
+                key={i}
+                className="flex items-center justify-between rounded-lg border border-border/50 bg-background/50 px-3 py-2.5"
+              >
                 <div className="flex items-center gap-2.5 min-w-0 flex-1">
                   <span className="text-muted-foreground">{platformIcon(p.platform)}</span>
                   <p className="text-xs font-medium text-foreground truncate">{p.title}</p>
