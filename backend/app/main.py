@@ -8,7 +8,7 @@ from fastapi import Depends, FastAPI, Header, HTTPException, Query, Request
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import and_
 from sqlalchemy.orm import Session
-
+from app.routes import integrations, telegram  # ← ADICIONE ISSO
 from .config import settings
 from .db import Base, SessionLocal, engine, get_db
 from .models import (
@@ -54,6 +54,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.include_router(integrations.router, prefix="/api")
+app.include_router(telegram.router, prefix="/api")
 
 @app.on_event("startup")
 def startup() -> None:
