@@ -8,7 +8,7 @@ from fastapi import Depends, FastAPI, Header, HTTPException, Query, Request
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import and_
 from sqlalchemy.orm import Session
-from app.routes import integrations, telegram  # ← ADICIONE ISSO
+from .routes import integrations, telegram
 from .config import settings
 from .db import Base, SessionLocal, engine, get_db
 from .models import (
