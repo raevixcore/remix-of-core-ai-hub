@@ -13,7 +13,6 @@ from app.routes import integrations, telegram
 from app.config import settings
 from app.db import Base, SessionLocal, engine, get_db
 from app.models import (
-    AIConfig,
     Client,
     Conversation,
     Integration,
