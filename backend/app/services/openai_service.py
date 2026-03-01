@@ -1,4 +1,4 @@
-from openai import OpenAI
+from app.services.openai_services import generate_ai_response
 import os
 
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
