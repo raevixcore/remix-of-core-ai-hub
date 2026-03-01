@@ -1,3 +1,5 @@
+from fastapi import APIRouter, Request, Depends
+from sqlalchemy.orm import Session
 from app.db import get_db
 from app.models.integration import Integration
 from app.services.openai_service import generate_ai_response
@@ -9,7 +11,7 @@ router = APIRouter()
 async def telegram_webhook(
     user_id: int,
     request: Request,
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
 ):
     data = await request.json()
 
@@ -24,7 +26,6 @@ async def telegram_webhook(
         .filter(
             Integration.user_id == user_id,
             Integration.type == "telegram",
-            Integration.active == True
         )
         .first()
     )
@@ -38,8 +39,8 @@ async def telegram_webhook(
         f"https://api.telegram.org/bot{integration.bot_token}/sendMessage",
         json={
             "chat_id": chat_id,
-            "text": ai_response
-        }
+            "text": ai_response,
+        },
     )
 
     return {"ok": True}
