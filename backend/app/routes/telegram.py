@@ -1,17 +1,18 @@
 from fastapi import APIRouter, Request, Depends
 from sqlalchemy.orm import Session
 from app.db import get_db
-from ..models.integration import Integration
+from app.models.integration import Integration
 from app.services.openai_service import generate_ai_response
 import requests
 
 router = APIRouter()
 
 @router.post("/webhook/telegram/{user_id}")
-async def telegram_webhook(user_id: int,
-                           request: Request,
-                           db: Session = Depends(get_db)):
-
+async def telegram_webhook(
+    user_id: int,
+    request: Request,
+    db: Session = Depends(get_db)
+):
     data = await request.json()
 
     if "message" not in data:
@@ -20,10 +21,15 @@ async def telegram_webhook(user_id: int,
     text = data["message"].get("text")
     chat_id = data["message"]["chat"]["id"]
 
-    integration = db.query(Integration).filter(
-        Integration.user_id == user_id,
-        Integration.type == "telegram"
-    ).first()
+    integration = (
+        db.query(Integration)
+        .filter(
+            Integration.user_id == user_id,
+            Integration.type == "telegram",
+            Integration.active == True
+        )
+        .first()
+    )
 
     if not integration:
         return {"error": "Integration not found"}
