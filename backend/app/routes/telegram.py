@@ -1,5 +1,3 @@
-from fastapi import APIRouter, Request, Depends
-from sqlalchemy.orm import Session
 from app.db import get_db
 from app.models.integration import Integration
 from app.services.openai_service import generate_ai_response
