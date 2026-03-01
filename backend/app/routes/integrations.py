@@ -1,7 +1,10 @@
+from fastapi import APIRouter, Depends
+from sqlalchemy.orm import Session
 from app.db import get_db
 from app.models.integration import Integration
 from app.security import get_current_user
 from app.config import settings
+import requests
 
 router = APIRouter()
 
@@ -9,7 +12,7 @@ router = APIRouter()
 def save_telegram_integration(
     payload: dict,
     db: Session = Depends(get_db),
-    user = Depends(get_current_user)
+    user = Depends(get_current_user),
 ):
     bot_token = payload["bot_token"]
     username = payload.get("username")
@@ -19,7 +22,7 @@ def save_telegram_integration(
         type="telegram",
         bot_token=bot_token,
         username=username,
-        active=True
+        active=True,
     )
 
     db.add(integration)
@@ -30,7 +33,7 @@ def save_telegram_integration(
 
     requests.post(
         f"https://api.telegram.org/bot{bot_token}/setWebhook",
-        json={"url": webhook_url}
+        json={"url": webhook_url},
     )
 
     return {"success": True}
