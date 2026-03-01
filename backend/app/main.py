@@ -3,15 +3,16 @@ import hashlib
 import hmac
 import secrets
 from typing import Any
- 
+
 from fastapi import Depends, FastAPI, Header, HTTPException, Query, Request
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import and_
 from sqlalchemy.orm import Session
-from .routes import integrations, telegram
-from .config import settings
-from .db import Base, SessionLocal, engine, get_db
-from .models import (
+
+from app.routes import integrations, telegram
+from app.config import settings
+from app.db import Base, SessionLocal, engine, get_db
+from app.models import (
     AIConfig,
     Client,
     Conversation,
